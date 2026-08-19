@@ -1,39 +1,27 @@
-import { useEffect, useState,Route } from "react";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./compnents/Navbar.jsx";
+import Home from "./pages/Home.jsx";
+
+const ProductDetails = lazy(() => import("./pages/ProductDetails.jsx"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+
 function App() {
-  const [products, setProducts] = useState([]);
-  const[cart,setCart]=useState([]);
-  const[count,setCount]=useState(0)
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+  return (
+    <>
+      <Navbar />
 
-function addProduct(id){
-  products.map((product)=>(
-  setCart[product.id]
-),setCount(count+1)
-)
-}
+      <Suspense fallback={<h2 className="center">Loading Page...</h2>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
+          <Route path="/product/:id" element={<ProductDetails />} />
 
-return (
-    <div>
-      <h1>Products</h1>
- <button>checkout {count} </button>
-      {products.map((product) => (
-        <div key={product.id}>
-          <img  src={product.image} alt={product.title} width="200" />
-          <h2>{product.title}</h2>
-          <p>{product.description}</p>
-          <p>Price: ${product.price}</p>
-          <p>Category: {product.category}</p>
-          <p>Rating:{product.rating.rate}</p>
-          <p>Count:{product.rating.count}</p>
-          <button onClick={addProduct}>Add</button>
-        </div>
-      ))}
-    </div>
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 
