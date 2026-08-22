@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/CartContext.jsx";
 
 function Checkout() {
   const { cart, totalPrice, dispatch } = useCart();
+  const [submitted, setSubmitted] = useState(false);
 
   const {
     register,
@@ -10,19 +12,22 @@ function Checkout() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-
+  const onSubmit = () => {
     dispatch({
       type: "CLEAR_CART",
     });
-
-    alert("Order placed successfully!");
+    setSubmitted(true);
   };
 
   return (
     <div className="checkout">
       <h1>Checkout</h1>
+
+      {submitted && (
+        <p className="success" role="status">
+          Order placed successfully. Thank you for your purchase!
+        </p>
+      )}
 
       {cart.length === 0 ? (
         <h2>Your cart is empty</h2>

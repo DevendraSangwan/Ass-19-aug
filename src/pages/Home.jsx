@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
 import ProductCard from "../compnents/ProductCard.jsx";
 import useFetch from "../hooks/UseFetch.js";
-import useDebounce from "../hooks/useDebounce";
-import { useCart } from "../context/CartContext";
+import useDebounce from "../hooks/useDebounce.js";
+import { useCart } from "../context/CartContext.jsx";
 
 function Home() {
   const { data, loading, error } = useFetch(

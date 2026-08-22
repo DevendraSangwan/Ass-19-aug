@@ -14,6 +14,27 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the Oxlint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-# Ass-19-aug
+# TechStore
 
-for runnig this file you need to run commond for donwlaod npm then you run commond npm run dev
+A multi-page React and Vite storefront assessment using the Fake Store API.
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite. The production build can be checked with:
+
+```bash
+npm run build
+```
+
+## Features
+
+- Product catalog with 500ms debounced title search
+- Product details route at `/product/:id`
+- Context API and `useReducer` cart management
+- Checkout route at `/checkout` with React Hook Form validation
+- Lazy-loaded details and checkout pages
